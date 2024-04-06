@@ -3,7 +3,7 @@
 	<head>
 		<meta charset="UTF-8">
 		<title>Emulatrix</title>
-		<link rel="stylesheet" href="Emulatrix.css">
+		<link rel="stylesheet" href="/style/Emulatrix.css">
 	</head>
 	<body>
 		<script>
@@ -32,7 +32,7 @@
 				var dataView = new Uint8Array(parent.ROMDATA);
 
 				// CREATING THE ROM FILE IN THE VIRTUAL DRIVE
-				FS.createDataFile("/", "game.bin", dataView, true, false);
+				FS.createDataFile("/", "game.smc", dataView, true, false);
 
 				// CREATING THE FOLDERS IN THE VIRTUAL DRIVE IN ORDER TO SAVE THE CONFIG FILE
 				FS.createFolder("/home/web_user", "retroarch", true, true);
@@ -46,18 +46,17 @@
 				// SETTING THE DEFAULT FOLDER WHEN BROWSING THE VIRTUAL DRIVE
 				settings_file += "rgui_browser_directory = /\n";
 
-				// SETTING THE KEY FOR THE START BUTTON
-				settings_file += "input_player1_start = enter\n";
+				// SETTING THE KEY FOR THE START AND SELECT BUTTON
+				settings_file += "input_player1_start = e\n";
+				settings_file += "input_player1_select = r\n";
 
-				// SETTING THE KEYS FOR THE BUTTONS A, B, C
+				// SETTING THE KEYS FOR THE BUTTONS A, B, X, Y, L, R
+				settings_file += "input_player1_a = x\n";
+				settings_file += "input_player1_b = z\n";
+				settings_file += "input_player1_x = s\n";
 				settings_file += "input_player1_y = a\n";
-				settings_file += "input_player1_b = s\n";
-				settings_file += "input_player1_a = d\n";
-
-				// SETTING THE KEYS FOR THE BUTTONS X, Y, Z
 				settings_file += "input_player1_l = q\n";
-				settings_file += "input_player1_x = w\n";
-				settings_file += "input_player1_r = e\n";
+				settings_file += "input_player1_r = w\n";
 
 				// SETTING THE KEY FOR SOUND TOGGLE
 				settings_file += "input_audio_mute = f9\n";
@@ -361,7 +360,7 @@
 			function startEmulator()
 				{
 				// RUNNING THE EMULATOR WITH THE SELECTED ROM
-				Module.callMain(["-v","/game.bin"]);
+				Module.callMain(["-v","/game.smc"]);
 
 				// RESIZING THE CANVAS
 				document.getElementById("canvas").width = container_width;
@@ -747,27 +746,30 @@
 				if (isMobileDevice()==true && parent.mobileControlsVisible()==true)
 					{
 					// SHOWING THE VIRTUAL BUTTONS AND ASSIGNING TOUCHING EVENTS TO EACH ONE OF THEM
-					document.getElementsByClassName("gui_segagenesis_keystart")[0].style.display = "block";
-					document.getElementsByClassName("gui_segagenesis_keystart")[0].addEventListener("touchstart",function(event){sendVirtualKey("keydown","Enter")});
-					document.getElementsByClassName("gui_segagenesis_keystart")[0].addEventListener("touchend",function(event){sendVirtualKey("keyup","Enter")});
-					document.getElementsByClassName("gui_segagenesis_keya")[0].style.display = "block";
-					document.getElementsByClassName("gui_segagenesis_keya")[0].addEventListener("touchstart",function(event){sendVirtualKey("keydown","KeyA")});
-					document.getElementsByClassName("gui_segagenesis_keya")[0].addEventListener("touchend",function(event){sendVirtualKey("keyup","KeyA")});
-					document.getElementsByClassName("gui_segagenesis_keyb")[0].style.display = "block";
-					document.getElementsByClassName("gui_segagenesis_keyb")[0].addEventListener("touchstart",function(event){sendVirtualKey("keydown","KeyS")});
-					document.getElementsByClassName("gui_segagenesis_keyb")[0].addEventListener("touchend",function(event){sendVirtualKey("keyup","KeyS")});
-					document.getElementsByClassName("gui_segagenesis_keyc")[0].style.display = "block";
-					document.getElementsByClassName("gui_segagenesis_keyc")[0].addEventListener("touchstart",function(event){sendVirtualKey("keydown","KeyD")});
-					document.getElementsByClassName("gui_segagenesis_keyc")[0].addEventListener("touchend",function(event){sendVirtualKey("keyup","KeyD")});
-					document.getElementsByClassName("gui_segagenesis_keyx")[0].style.display = "block";
-					document.getElementsByClassName("gui_segagenesis_keyx")[0].addEventListener("touchstart",function(event){sendVirtualKey("keydown","KeyQ")});
-					document.getElementsByClassName("gui_segagenesis_keyx")[0].addEventListener("touchend",function(event){sendVirtualKey("keyup","KeyQ")});
-					document.getElementsByClassName("gui_segagenesis_keyy")[0].style.display = "block";
-					document.getElementsByClassName("gui_segagenesis_keyy")[0].addEventListener("touchstart",function(event){sendVirtualKey("keydown","KeyW")});
-					document.getElementsByClassName("gui_segagenesis_keyy")[0].addEventListener("touchend",function(event){sendVirtualKey("keyup","KeyW")});
-					document.getElementsByClassName("gui_segagenesis_keyz")[0].style.display = "block";
-					document.getElementsByClassName("gui_segagenesis_keyz")[0].addEventListener("touchstart",function(event){sendVirtualKey("keydown","KeyE")});
-					document.getElementsByClassName("gui_segagenesis_keyz")[0].addEventListener("touchend",function(event){sendVirtualKey("keyup","KeyE")});
+					document.getElementsByClassName("gui_supernintendo_keyselect")[0].style.display = "block";
+					document.getElementsByClassName("gui_supernintendo_keyselect")[0].addEventListener("touchstart",function(event){sendVirtualKey("keydown","KeyR")});
+					document.getElementsByClassName("gui_supernintendo_keyselect")[0].addEventListener("touchend",function(event){sendVirtualKey("keyup","KeyR")});
+					document.getElementsByClassName("gui_supernintendo_keystart")[0].style.display = "block";
+					document.getElementsByClassName("gui_supernintendo_keystart")[0].addEventListener("touchstart",function(event){sendVirtualKey("keydown","KeyE")});
+					document.getElementsByClassName("gui_supernintendo_keystart")[0].addEventListener("touchend",function(event){sendVirtualKey("keyup","KeyE")});
+					document.getElementsByClassName("gui_supernintendo_keya")[0].style.display = "block";
+					document.getElementsByClassName("gui_supernintendo_keya")[0].addEventListener("touchstart",function(event){sendVirtualKey("keydown","KeyX")});
+					document.getElementsByClassName("gui_supernintendo_keya")[0].addEventListener("touchend",function(event){sendVirtualKey("keyup","KeyX")});
+					document.getElementsByClassName("gui_supernintendo_keyb")[0].style.display = "block";
+					document.getElementsByClassName("gui_supernintendo_keyb")[0].addEventListener("touchstart",function(event){sendVirtualKey("keydown","KeyZ")});
+					document.getElementsByClassName("gui_supernintendo_keyb")[0].addEventListener("touchend",function(event){sendVirtualKey("keyup","KeyZ")});
+					document.getElementsByClassName("gui_supernintendo_keyx")[0].style.display = "block";
+					document.getElementsByClassName("gui_supernintendo_keyx")[0].addEventListener("touchstart",function(event){sendVirtualKey("keydown","KeyS")});
+					document.getElementsByClassName("gui_supernintendo_keyx")[0].addEventListener("touchend",function(event){sendVirtualKey("keyup","KeyS")});
+					document.getElementsByClassName("gui_supernintendo_keyy")[0].style.display = "block";
+					document.getElementsByClassName("gui_supernintendo_keyy")[0].addEventListener("touchstart",function(event){sendVirtualKey("keydown","KeyA")});
+					document.getElementsByClassName("gui_supernintendo_keyy")[0].addEventListener("touchend",function(event){sendVirtualKey("keyup","KeyA")});
+					document.getElementsByClassName("gui_supernintendo_keyl")[0].style.display = "block";
+					document.getElementsByClassName("gui_supernintendo_keyl")[0].addEventListener("touchstart",function(event){sendVirtualKey("keydown","KeyQ")});
+					document.getElementsByClassName("gui_supernintendo_keyl")[0].addEventListener("touchend",function(event){sendVirtualKey("keyup","KeyQ")});
+					document.getElementsByClassName("gui_supernintendo_keyr")[0].style.display = "block";
+					document.getElementsByClassName("gui_supernintendo_keyr")[0].addEventListener("touchstart",function(event){sendVirtualKey("keydown","KeyW")});
+					document.getElementsByClassName("gui_supernintendo_keyr")[0].addEventListener("touchend",function(event){sendVirtualKey("keyup","KeyW")});
 
 					// SHOWING THE VIRTUAL JOYSTICK
 					document.getElementsByClassName("gui_joystick")[0].style.display = "block";
@@ -844,7 +846,7 @@
 				setTimeout(function()
 					{
 					// RUNS THE EMULATOR WITH THE SELECTED ROM
-					Module.callMain(["-v","/game.bin"]);
+					Module.callMain(["-v","/game.smc"]);
 
 					// RESIZES THE CANVAS
 					document.getElementById("canvas").width = container_width;
@@ -856,16 +858,17 @@
 		<div class="gui_pleasewait_title"><script>document.write(parent.STRING_STARTINGEMULATOR);</script></div><div class="pleasewait"><div class="lds-spinner"><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div></div></div>
 		<div id="container"><canvas id="canvas" oncontextmenu="event.preventDefault()"></canvas></div>
 		<div class="gui_joystick" id="joyDiv"></div>
-		<div class="gui_segagenesis_keystart" oncontextmenu="return false;">START</div>
-		<div class="gui_segagenesis_keya" oncontextmenu="return false;">A</div>
-		<div class="gui_segagenesis_keyb" oncontextmenu="return false;">B</div>
-		<div class="gui_segagenesis_keyc" oncontextmenu="return false;">C</div>
-		<div class="gui_segagenesis_keyx" oncontextmenu="return false;">X</div>
-		<div class="gui_segagenesis_keyy" oncontextmenu="return false;">Y</div>
-		<div class="gui_segagenesis_keyz" oncontextmenu="return false;">Z</div>
+		<div class="gui_supernintendo_keyselect" oncontextmenu="return false;">SELECT</div>
+		<div class="gui_supernintendo_keystart" oncontextmenu="return false;">START</div>
+		<div class="gui_supernintendo_keya" oncontextmenu="return false;">A</div>
+		<div class="gui_supernintendo_keyb" oncontextmenu="return false;">B</div>
+		<div class="gui_supernintendo_keyx" oncontextmenu="return false;">X</div>
+		<div class="gui_supernintendo_keyy" oncontextmenu="return false;">Y</div>
+		<div class="gui_supernintendo_keyl" oncontextmenu="return false;">L</div>
+		<div class="gui_supernintendo_keyr" oncontextmenu="return false;">R</div>
 		<div class="gui_loading"><script>document.write(parent.STRING_LOADING);</script></div>
 		<div class="gui_saving"><script>document.write(parent.STRING_SAVING);</script></div>
 		<input type="file" class="fileupload_uploader" id="fileupload_uploader" onchange="upload_getFile(event.target.files);">
-		<script src="Emulatrix_SegaGenesis.js"></script>
+		<script src="Emulatrix_SuperNintendo.js"></script>
 	</body>
 </html>

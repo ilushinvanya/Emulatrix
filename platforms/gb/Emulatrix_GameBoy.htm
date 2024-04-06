@@ -3,7 +3,7 @@
 	<head>
 		<meta charset="UTF-8">
 		<title>Emulatrix</title>
-		<link rel="stylesheet" href="Emulatrix.css">
+		<link rel="stylesheet" href="/style/Emulatrix.css">
 	</head>
 	<body>
 		<script>
@@ -32,7 +32,7 @@
 				var dataView = new Uint8Array(parent.ROMDATA);
 
 				// CREATING THE ROM FILE IN THE VIRTUAL DRIVE
-				FS.createDataFile("/", "game.gba", dataView, true, false);
+				FS.createDataFile("/", "game.gb", dataView, true, false);
 
 				// CREATING THE FOLDERS IN THE VIRTUAL DRIVE IN ORDER TO SAVE THE CONFIG FILE
 				FS.createFolder("/home/web_user", "retroarch", true, true);
@@ -52,11 +52,9 @@
 				settings_file += "input_player1_select = a\n";
 				settings_file += "input_player1_select_btn = a\n";
 
-				// SETTING THE KEYS FOR THE BUTTONS A, B, L, R
+				// SETTING THE KEYS FOR THE BUTTONS A, B
 				settings_file += "input_player1_a = x\n";
 				settings_file += "input_player1_b = z\n";
-				settings_file += "input_player1_l = q\n";
-				settings_file += "input_player1_r = w\n";
 
 				// SETTING THE KEY FOR SOUND TOGGLE
 				settings_file += "input_audio_mute = f9\n";
@@ -103,8 +101,10 @@
 				// PLAYER 1
 				settings_file += "input_player1_x = " + emptyValue + "\n";
 				settings_file += "input_player1_y = " + emptyValue + "\n";
+				settings_file += "input_player1_l = " + emptyValue + "\n";
 				settings_file += "input_player1_l2 = " + emptyValue + "\n";
 				settings_file += "input_player1_l3 = " + emptyValue + "\n";
+				settings_file += "input_player1_r = " + emptyValue + "\n";
 				settings_file += "input_player1_r2 = " + emptyValue + "\n";
 				settings_file += "input_player1_r3 = " + emptyValue + "\n";
 				settings_file += "input_player1_l_x_plus = " + emptyValue + "\n";
@@ -362,7 +362,7 @@
 			function startEmulator()
 				{
 				// RUNNING THE EMULATOR WITH THE SELECTED ROM
-				Module.callMain(["-v","/game.gba"]);
+				Module.callMain(["-v","/game.gb"]);
 
 				// RESIZING THE CANVAS
 				document.getElementById("canvas").width = container_width;
@@ -748,24 +748,18 @@
 				if (isMobileDevice()==true && parent.mobileControlsVisible()==true)
 					{
 					// SHOWING THE VIRTUAL BUTTONS AND ASSIGNING TOUCHING EVENTS TO EACH ONE OF THEM
-					document.getElementsByClassName("gui_gameboyadvance_keyselect")[0].style.display = "block";
-					document.getElementsByClassName("gui_gameboyadvance_keyselect")[0].addEventListener("touchstart",function(event){sendVirtualKey("keydown","KeyA")});
-					document.getElementsByClassName("gui_gameboyadvance_keyselect")[0].addEventListener("touchend",function(event){sendVirtualKey("keyup","KeyA")});
-					document.getElementsByClassName("gui_gameboyadvance_keystart")[0].style.display = "block";
-					document.getElementsByClassName("gui_gameboyadvance_keystart")[0].addEventListener("touchstart",function(event){sendVirtualKey("keydown","KeyS")});
-					document.getElementsByClassName("gui_gameboyadvance_keystart")[0].addEventListener("touchend",function(event){sendVirtualKey("keyup","KeyS")});
-					document.getElementsByClassName("gui_gameboyadvance_keya")[0].style.display = "block";
-					document.getElementsByClassName("gui_gameboyadvance_keya")[0].addEventListener("touchstart",function(event){sendVirtualKey("keydown","KeyX")});
-					document.getElementsByClassName("gui_gameboyadvance_keya")[0].addEventListener("touchend",function(event){sendVirtualKey("keyup","KeyX")});
-					document.getElementsByClassName("gui_gameboyadvance_keyb")[0].style.display = "block";
-					document.getElementsByClassName("gui_gameboyadvance_keyb")[0].addEventListener("touchstart",function(event){sendVirtualKey("keydown","KeyZ")});
-					document.getElementsByClassName("gui_gameboyadvance_keyb")[0].addEventListener("touchend",function(event){sendVirtualKey("keyup","KeyZ")});
-					document.getElementsByClassName("gui_gameboyadvance_keyl")[0].style.display = "block";
-					document.getElementsByClassName("gui_gameboyadvance_keyl")[0].addEventListener("touchstart",function(event){sendVirtualKey("keydown","KeyQ")});
-					document.getElementsByClassName("gui_gameboyadvance_keyl")[0].addEventListener("touchend",function(event){sendVirtualKey("keyup","KeyQ")});
-					document.getElementsByClassName("gui_gameboyadvance_keyr")[0].style.display = "block";
-					document.getElementsByClassName("gui_gameboyadvance_keyr")[0].addEventListener("touchstart",function(event){sendVirtualKey("keydown","KeyW")});
-					document.getElementsByClassName("gui_gameboyadvance_keyr")[0].addEventListener("touchend",function(event){sendVirtualKey("keyup","KeyW")});
+					document.getElementsByClassName("gui_gameboy_keyselect")[0].style.display = "block";
+					document.getElementsByClassName("gui_gameboy_keyselect")[0].addEventListener("touchstart",function(event){sendVirtualKey("keydown","KeyA")});
+					document.getElementsByClassName("gui_gameboy_keyselect")[0].addEventListener("touchend",function(event){sendVirtualKey("keyup","KeyA")});
+					document.getElementsByClassName("gui_gameboy_keystart")[0].style.display = "block";
+					document.getElementsByClassName("gui_gameboy_keystart")[0].addEventListener("touchstart",function(event){sendVirtualKey("keydown","KeyS")});
+					document.getElementsByClassName("gui_gameboy_keystart")[0].addEventListener("touchend",function(event){sendVirtualKey("keyup","KeyS")});
+					document.getElementsByClassName("gui_gameboy_keya")[0].style.display = "block";
+					document.getElementsByClassName("gui_gameboy_keya")[0].addEventListener("touchstart",function(event){sendVirtualKey("keydown","KeyX")});
+					document.getElementsByClassName("gui_gameboy_keya")[0].addEventListener("touchend",function(event){sendVirtualKey("keyup","KeyX")});
+					document.getElementsByClassName("gui_gameboy_keyb")[0].style.display = "block";
+					document.getElementsByClassName("gui_gameboy_keyb")[0].addEventListener("touchstart",function(event){sendVirtualKey("keydown","KeyZ")});
+					document.getElementsByClassName("gui_gameboy_keyb")[0].addEventListener("touchend",function(event){sendVirtualKey("keyup","KeyZ")});
 
 					// SHOWING THE VIRTUAL JOYSTICK
 					document.getElementsByClassName("gui_joystick")[0].style.display = "block";
@@ -842,7 +836,7 @@
 				setTimeout(function()
 					{
 					// RUNS THE EMULATOR WITH THE SELECTED ROM
-					Module.callMain(["-v","/game.gba"]);
+					Module.callMain(["-v","/game.gb"]);
 
 					// RESIZES THE CANVAS
 					document.getElementById("canvas").width = container_width;
@@ -854,15 +848,13 @@
 		<div class="gui_pleasewait_title"><script>document.write(parent.STRING_STARTINGEMULATOR);</script></div><div class="pleasewait"><div class="lds-spinner"><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div></div></div>
 		<div id="container"><canvas id="canvas" oncontextmenu="event.preventDefault()"></canvas></div>
 		<div class="gui_joystick" id="joyDiv"></div>
-		<div class="gui_gameboyadvance_keyselect" oncontextmenu="return false;">SELECT</div>
-		<div class="gui_gameboyadvance_keystart" oncontextmenu="return false;">START</div>
-		<div class="gui_gameboyadvance_keya" oncontextmenu="return false;">A</div>
-		<div class="gui_gameboyadvance_keyb" oncontextmenu="return false;">B</div>
-		<div class="gui_gameboyadvance_keyl" oncontextmenu="return false;">L</div>
-		<div class="gui_gameboyadvance_keyr" oncontextmenu="return false;">R</div>
+		<div class="gui_gameboy_keyselect" oncontextmenu="return false;">SELECT</div>
+		<div class="gui_gameboy_keystart" oncontextmenu="return false;">START</div>
+		<div class="gui_gameboy_keyb" oncontextmenu="return false;">B</div>
+		<div class="gui_gameboy_keya" oncontextmenu="return false;">A</div>
 		<div class="gui_loading"><script>document.write(parent.STRING_LOADING);</script></div>
 		<div class="gui_saving"><script>document.write(parent.STRING_SAVING);</script></div>
 		<input type="file" class="fileupload_uploader" id="fileupload_uploader" onchange="upload_getFile(event.target.files);">
-		<script src="Emulatrix_GameBoyAdvance.js"></script>
+		<script src="Emulatrix_GameBoy.js"></script>
 	</body>
 </html>
