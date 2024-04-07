@@ -298,9 +298,13 @@ html,body{margin:0;padding:0;background-color:black;-webkit-user-select:none;-mo
 	display: flex;
 	flex-wrap: wrap;
 	justify-content: center;
+	height: 92vh;
+	align-items: center;
+	background: transparent;
+	position: absolute;
 }
 #roms-list div {
-	width: 23%;
+	width: 22%;
 	padding: 0;
 	margin: 0.6%;
 }
@@ -312,5 +316,5 @@ html,body{margin:0;padding:0;background-color:black;-webkit-user-select:none;-mo
 }
 
 #roms-list img:hover {
-	transform: scale(1.2, 1.2);
+	transform: scale(1.1, 1.1);
 }
