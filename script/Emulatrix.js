@@ -49,7 +49,39 @@ var MAME32_ROM_LIST = "|1941.zip|1941j.zip|1941r1.zip|1941u.zip|1942.zip|1942a.z
 var MOBILE_CONTROLS_VISIBLE = getBooleanSetting("MOBILE_CONTROLS_VISIBLE");
 
 // CHECKING THE USER LANGUAGE
-if (userLanguage.substring(0,2)=="es")
+if (userLanguage.substring(0,2) === "ru")
+{
+	STRING_HOW_DESKTOP1 = "Как это работает?";
+	STRING_HOW_DESKTOP2 = "Нажмите красный значок, расположенный в нижней части экрана, а затем выберите на своем компьютере файл игры, в которую вы хотите играть.<br>Чтобы играть в игру для DOS, вам необходимо создать ZIP-файл. со всеми файлами игры и откройте его в Emulatrix.<br>При загрузке он попытается запустить AUTORUN.BAT.<br>Для загрузки виртуальных машин необходимо создать ZIP-файл с образом диска с именем c .img.";
+	STRING_HOW_MOBILE = "Нажмите на значок ниже,<br>выберите ПЗУ на своем телефоне<br>и начните играть на MegaDrive,<br>NES, SNES, Gameboy, MAME32 и DOS.";
+	STRING_HOW_MOBILE_IOS = "Emulatrix<br>несовместим<br>с системами iOS."
+	STRING_SAFARI = "Emulatrix<br>несовместим<br>с веб-браузером Safari."
+	STRING_INSERTCOIN = "ВСТАВИТЬ МОНЕТУ = 1";
+	STRING_SELECTGAME = "Выбрать игру";
+	STRING_UPLOADFILE = "Загрузить файл";
+	STRING_DOWNLOADFILE = "Загрузить файл";
+	STRING_LOADSTATE = "Загрузить состояние игры";
+	STRING_SAVESTATE = "Загрузить состояние игры";
+	STRING_GOBACK = "Вернуться в главное меню";
+	STRING_FULLSCREEN = "Полноэкранный режим";
+	STRING_RELOAD = "Перезагрузить игру";
+	STRING_READINGFILE = "Чтение файла...";
+	STRING_STARTINGEMULATOR = "Запуск эмулятора...";
+	STRING_SELECTFOLDER = "Выберите папку";
+	STRING_KEYBOARDANDMOUSE = "КЛАВИАТУРА<br>И МЫШЬ";
+	STRING_ERROREXTENSION_TITLE = "СООБЩЕНИЕ";
+	STRING_ERROREXTENSION_MESSAGE = "Убедитесь, что файл игры имеет разрешенный<br>формат: NES, SMC, SFC, SRM, GB, GBC,<br>GBA, BIN, SMD, MD или ZIP.";
+	STRING_ERROREXTENSION_ACCEPT = "ОК";
+	STRING_SAVING = "Идет сохранение. Подождите...";
+	STRING_LOADING = "Идет загрузка. Подождите...";
+	STRING_SAVED = "Файл сохранен в папке 'Загрузки'";
+	STRING_SAVED_ERROR = "Состояние игры не найдено.";
+	STRING_SOUND = "Звук игры";
+	STRING_DECREASE = "Уменьшить количество циклов";
+	STRING_INCREASE = "Увеличить количество циклов";
+	STRING_MOBILE_CONTROLS_HIDDEN = "МОБИЛЬНЫЕ УПРАВЛЕНИЯ СКРЫТЫ";
+}
+else if (userLanguage.substring(0,2) === "es")
 {
 	STRING_HOW_DESKTOP1 = "&iquest;C&oacute;mo funciona?";
 	STRING_HOW_DESKTOP2 = "Haga click en el &iacute;cono rojo ubicado en el extremo inferior de la pantalla y luego seleccione de su computadora el archivo del juego que desea jugar.<br>Para cargar juegos de DOS, crea un archivo ZIP con los archivos del juego y &aacute;brelo con Emulatrix.<br>Al iniciarse, se intentar&aacute; ejecutar AUTORUN.BAT.<br>Para cargar maquinas virtuales, crea un archivo ZIP con la imagen del disco con el nombre c.img.";
