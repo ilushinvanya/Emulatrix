@@ -369,7 +369,7 @@ async function openGameList(url) {
 		div.appendChild(img)
 		document.getElementById('roms-list').appendChild(div)
 	})
-	document.getElementsByClassName('gui_controls')[0].style.display = 'none';
+	document.getElementsByClassName('gui_controls_center')[0].style.display = 'none';
 }
 
 async function getRom(romName) {
@@ -693,6 +693,7 @@ function fullscreenHandler()
 
 window.addEventListener("load", function()
 {
+	document.getElementsByClassName("gui_fullscreen")[0].style.display = "block";
 	// ENABLING THE UPLOAD ICON FUNCTIONALITY
 	document.getElementById("gui_controls_file").disabled = false;
 

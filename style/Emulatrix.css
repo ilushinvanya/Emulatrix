@@ -303,10 +303,10 @@ html,body{margin:0;padding:0;background-color:black;-webkit-user-select:none;-mo
 	display: flex;
 	flex-wrap: wrap;
 	justify-content: center;
-	height: 92vh;
+	height: 90vh;
 	align-items: center;
 	background: transparent;
-	position: absolute;
+	position: fixed;
 }
 #roms-list div {
 	width: 22%;
@@ -321,5 +321,5 @@ html,body{margin:0;padding:0;background-color:black;-webkit-user-select:none;-mo
 }
 
 #roms-list img:hover {
-	transform: scale(1.1, 1.1);
+	/*transform: scale(1.1, 1.1);*/
 }
