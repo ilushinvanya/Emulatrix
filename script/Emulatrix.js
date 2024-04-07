@@ -154,7 +154,8 @@ function runEmulator(files)
 		var extension = files[0].name.split(".").pop().toLowerCase();
 
 		// CHECKING THE FILE EXTENSION
-		if (extension=="nes" | extension=="smc" | extension=="sfc" | extension=="srm" | extension=="gb" | extension=="gbc" | extension=="gba" | extension=="bin" | extension=="smd" | extension=="md" | extension=="zip")
+		// if (extension=="nes" | extension=="smc" | extension=="sfc" | extension=="srm" | extension=="gb" | extension=="gbc" | extension=="gba" | extension=="bin" | extension=="smd" | extension=="md" | extension=="zip")
+		if (["nes" ,"smc" ,"sfc" ,"srm" ,"gb" ,"gbc" ,"gba" ,"bin" ,"smd" ,"md" ,"zip"].includes(extension))
 		{
 			// CLEARING THE CONTAINER FROM ANY GAME IN PROGRESS
 			document.getElementById("container").contentDocument.location.replace("about:blank");
@@ -183,7 +184,7 @@ function runEmulator(files)
 				document.getElementById("gui_controls_file").value = null;
 
 				// CHECKING IF IT IS A MOBILE DEVICE
-				if (isMobileDevice()==true)
+				if (isMobileDevice() === true)
 				{
 					// SHOWING THE GO BACK BUTTON (FOR MOBILE DEVICES)
 					document.getElementsByClassName("gui_goback_mobile")[0].style.display = "block";
@@ -197,32 +198,32 @@ function runEmulator(files)
 				parent.updateTitle();
 
 				// CHECKING THE ROM EXTENSION AND STARTING THE REQUIRED EMULATOR FOR THE SELECTED ROM
-				if (extension=="nes")
+				if (extension === "nes")
 				{
 					// LOADING THE NINTENDO EMULATOR
 					document.getElementById("container").contentDocument.location.replace("./platforms/nintendo/Emulatrix_Nintendo.htm");
 				}
-				else if (extension=="smc" | extension=="sfc" | extension=="srm")
+				else if (["smc" ,"sfc" ,"srm"].includes(extension))
 				{
 					// LOADING THE SUPER NINTENDO EMULATOR
 					document.getElementById("container").contentDocument.location.replace("./platforms/nintendo/Emulatrix_SuperNintendo.htm");
 				}
-				else if (extension=="gb" | extension=="gbc")
+				else if (["gb", "gbc"].includes(extension))
 				{
 					// LOADING THE GAME BOY AND GAMEBOY COLOR EMULATOR
 					document.getElementById("container").contentDocument.location.replace("./platforms/gb/Emulatrix_GameBoy.htm");
 				}
-				else if (extension=="gba")
+				else if (extension === "gba")
 				{
 					// LOADING THE GAME BOY ADVANCE EMULATOR
 					document.getElementById("container").contentDocument.location.replace("./platforms/gb/Emulatrix_GameBoyAdvance.htm");
 				}
-				else if (extension=="bin" | extension=="smd" | extension=="md")
+				else if (["bin", "smd", "md"].includes(extension))
 				{
 					// LOADING THE SEGA GENESIS EMULATOR
 					document.getElementById("container").contentDocument.location.replace("./platforms/sega/Emulatrix_SegaGenesis.htm");
 				}
-				else if (extension=="zip")
+				else if (extension === "zip")
 				{
 					// RENAMING THE ROMNAME TO LOWER CASE FOR LATER CHECKING
 					ROMNAME = ROMNAME.toLowerCase();
@@ -727,7 +728,8 @@ window.addEventListener("load", function()
 		}
 
 		// SHOWING THE 'HOW DOES IT WORK' TEXT FOR MOBILE DEVICES
-		document.getElementsByClassName("gui_how_mobile")[0].style.display = "block";
+		document.getElementsByClassName("gui_title_how_desktop")[0].style.display = "block";
+		document.getElementsByClassName("gui_controls")[0].style.display = "block";
 	}
 	else
 	{

@@ -288,6 +288,11 @@ html,body{margin:0;padding:0;background-color:black;-webkit-user-select:none;-mo
 	.filedownload_select{height:169px}
 	.fileupload_container{height:248px;top:30px}
 	.fileupload_select{height:99px}
+	.gui_controls_table_field1,
+	.gui_controls_table_field2 {
+		font-size: 0;
+		line-height: 0;
+	}
 	}
 
 
