@@ -325,6 +325,32 @@ function goBack()
 	}
 }
 
+async function openGameList(url) {
+	const response = await fetch(url)
+	const json = await response.json();
+	json.forEach(rom => {
+		const div = document.createElement('div')
+		div.setAttribute("onclick","getRom('" + rom.bin + "');");
+		const img = document.createElement('img')
+		img.src = rom.png
+		div.appendChild(img)
+		document.getElementById('roms-list').appendChild(div)
+	})
+	document.getElementsByClassName('gui_controls')[0].style.display = 'none';
+}
+
+async function getRom(romName) {
+	const response = await fetch(romName);
+	const blob = await response.blob();
+	if(!blob.size) return;
+
+	const file = new File([blob], romName, {type: 'text/plain'});
+	const dt = new DataTransfer();
+	dt.items.add(file);
+	const file_list = dt.files;
+	runEmulator(file_list)
+}
+
 function ROMState_DownloadFile()
 {
 	try
