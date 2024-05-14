@@ -378,6 +378,28 @@
 				}
 
 			function resizeEmulatorCanvas()
+			{
+				// GETTING THE WINDOW WIDTH
+				const windowWidth = window.innerWidth;
+				const calcHeight = windowWidth / 1.43
+
+				// GETTING THE WINDOW HEIGHT
+				const windowHeight = window.innerHeight;
+				const calcWidth = windowHeight * 1.43;
+
+				// CHECKING IF THE CURRENT DEVICE IS A MOBILE DEVICE
+				if(calcHeight > windowHeight)
+				{
+					// RESIZING THE CONTAINER FOR MOBILE DEVICES
+					Module.setCanvasSize(calcWidth,windowHeight,true);
+				}
+				else
+				{
+					// RESIZING THE CONTAINER FOR DESKTOP DEVICES
+					Module.setCanvasSize(windowWidth,calcHeight,true);
+				}
+			}
+			function resizeEmulatorCanvasOld()
 				{
 				try
 					{

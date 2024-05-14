@@ -29,7 +29,7 @@ window.addEventListener("load", function()
 	if (window.top === window.self)
 	{
 		// RESIZING THE IFRAME
-		resizeContent();
+		// resizeContent();
 
 		// CREATING A 250 MS INTERVAL
 		setInterval(function()
@@ -49,14 +49,14 @@ window.addEventListener("load", function()
 window.addEventListener("resize", function()
 {
 	// RESIZING THE IFRAME WHEN THE SCREEN SIZE CHANGES
-	resizeContent();
+	// resizeContent();
 });
 
 var supportsOrientationChange = "onorientationchange" in window, orientationEvent = supportsOrientationChange ? "orientationchange" : "resize";
 window.addEventListener(orientationEvent, function()
 {
 	// RESIZING THE IFRAME WHEN THE SCREEN ORIENTATION CHANGES
-	resizeContent();
+	// resizeContent();
 }, false);
 
 function updateTitle()

@@ -729,6 +729,11 @@ window.addEventListener("load", function()
 	// CHECKING IF IT IS A MOBILE DEVICE
 	if (isMobileDevice()==true)
 	{
+		// HIDE hints for controls
+		const controlHints = document.getElementsByClassName('control-hint');
+		Array.prototype.forEach.call(controlHints, (el) => {
+			el.classList.add('hide');
+		});
 		// CHECKING IF THE USER IS USING IOS. EMULATRIX IS NOT COMPATIBLE WITH IOS.
 		if (usingiOS()==true)
 		{
