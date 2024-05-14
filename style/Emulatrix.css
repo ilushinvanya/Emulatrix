@@ -149,7 +149,8 @@ html,body{margin:0;padding:0;background-color:black;-webkit-user-select:none;-mo
 
 @media(max-width:1366px)
 	{
-	.gui_controls_table{width:650px;margin:0 auto}
+	.gui_controls_table{display:flex;flex-direction:column;}
+	.gui_controls_table--row{display:flex;justify-content: space-around;}
 	.gui_controls_table_field1{padding-top:0;color:white;font-family:Arial;font-size:14px;line-height:20px;font-weight:normal;vertical-align:top}
 	.gui_controls_table_field2{padding-top:20px;color:white;font-family:Arial;font-size:14px;line-height:20px;font-weight:normal;vertical-align:top}
 	}
@@ -300,26 +301,45 @@ html,body{margin:0;padding:0;background-color:black;-webkit-user-select:none;-mo
 	cursor: pointer;
 }
 #roms-list {
+	height: calc(100% - 50px);
+	background: black;
+	position: fixed;
+	overflow: scroll;
+	top: 50px;
+}
+#roms-list.hide {
+	display: none;
+}
+#roms-list .items {
+	position: relative;
 	display: flex;
 	flex-wrap: wrap;
 	justify-content: center;
-	height: 90vh;
 	align-items: center;
-	background: transparent;
-	position: fixed;
+	min-height: 100%;
 }
-#roms-list div {
+#roms-list .items .rom-item {
 	width: 22%;
 	padding: 0;
 	margin: 0.6%;
 }
-#roms-list img {
+#roms-list .rom-item img {
 	width: 100%;
 	display: block;
 	cursor: pointer;
 	transition: all .3s ease;
 }
-
+#roms-list .close {
+	position: absolute;
+	background: red;
+	width: 52px;
+	height: 52px;
+	z-index: 99;
+	top: 0;
+	right: 0;
+	border-radius: 50px;
+	cursor: pointer;
+}
 #roms-list img:hover {
 	/*transform: scale(1.1, 1.1);*/
 }

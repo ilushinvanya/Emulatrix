@@ -1,30 +1,32 @@
 function resizeContent()
 {
 	// GETTING THE WINDOW WIDTH
-	var w = window.innerWidth;
+	const windowWidth = window.innerWidth;
+	const calcHeight = windowWidth / 1.43
 
 	// GETTING THE WINDOW HEIGHT
-	var h = window.innerHeight;
+	const windowHeight = window.innerHeight;
+	const calcWidth = windowHeight * 1.43;
 
 	// CHECKING IF THE CURRENT DEVICE IS A MOBILE DEVICE
-	if(window.innerHeight > window.innerWidth)
+	if(calcHeight > windowHeight)
 	{
 		// RESIZING THE CONTAINER FOR MOBILE DEVICES
-		document.getElementById("content").style.width = h + "px";
-		document.getElementById("content").style.height = w + "px";
+		document.getElementById("content").style.width = calcWidth + "px";
+		document.getElementById("content").style.height = windowHeight + "px";
 	}
 	else
 	{
 		// RESIZING THE CONTAINER FOR DESKTOP DEVICES
-		document.getElementById("content").style.width = w + "px";
-		document.getElementById("content").style.height = h + "px";
+		document.getElementById("content").style.width = windowWidth + "px";
+		document.getElementById("content").style.height = calcHeight + "px";
 	}
 }
 
 window.addEventListener("load", function()
 {
 	// CHECKING IF EMULATRIX IS NOT RUNNING WITHIN AN IFRAME
-	if (window.top == window.self)
+	if (window.top === window.self)
 	{
 		// RESIZING THE IFRAME
 		resizeContent();

@@ -361,15 +361,18 @@ function goBack()
 async function openGameList(url) {
 	const response = await fetch(url)
 	const json = await response.json();
+	const romsList = document.getElementById('roms-list')
+	const romsItems = document.querySelector('#roms-list .items')
 	json.forEach(rom => {
 		const div = document.createElement('div')
 		div.setAttribute("onclick","getRom('" + rom.bin + "');");
+		div.setAttribute("class","rom-item");
 		const img = document.createElement('img')
 		img.src = rom.png
 		div.appendChild(img)
-		document.getElementById('roms-list').appendChild(div)
+		romsItems.appendChild(div)
 	})
-	document.getElementsByClassName('gui_controls_center')[0].style.display = 'none';
+	romsList.classList.remove('hide')
 }
 
 async function getRom(romName) {
@@ -382,6 +385,11 @@ async function getRom(romName) {
 	dt.items.add(file);
 	const file_list = dt.files;
 	runEmulator(file_list)
+}
+
+function closeRomList() {
+	document.getElementById('roms-list').classList.add('hide')
+	document.querySelector('#roms-list .items').innerHTML = ''
 }
 
 function ROMState_DownloadFile()
@@ -693,7 +701,7 @@ function fullscreenHandler()
 
 window.addEventListener("load", function()
 {
-	document.getElementsByClassName("gui_fullscreen")[0].style.display = "block";
+	document.getElementsByClassName("gui_fullscreen")[0].style.display = "none";
 	// ENABLING THE UPLOAD ICON FUNCTIONALITY
 	document.getElementById("gui_controls_file").disabled = false;
 
